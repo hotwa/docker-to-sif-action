@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-
+export TZ=Asia/Shanghai
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 INPUT_DOCKERFILE_PATH=$1
 APPTAINER_KEY=$2

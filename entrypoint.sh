@@ -5,6 +5,12 @@ TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 INPUT_DOCKERFILE_PATH=$1
 APPTAINER_KEY=$2
 
+# Check if INPUT_DOCKERFILE_PATH variable is set
+if [ -z "$INPUT_DOCKERFILE_PATH" ]; then
+    echo "Error: The INPUT_DOCKERFILE_PATH variable is not set."
+    exit 1
+fi
+
 # Build Docker image
 docker build -t hotwa/input:latest -f ${INPUT_DOCKERFILE_PATH} .
 

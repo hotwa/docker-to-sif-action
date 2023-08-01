@@ -27,8 +27,10 @@ if [ -n "$APPTAINER_KEY" ]; then
 fi
 
 # Package SIF file
-ls -l
-tar czvf ${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif.tar.gz ../${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif
+pwd
+ls
+ls ..
+tar czvf ${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif.tar.gz ${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif
 
 # Move the tar.gz file to the workspace directory
 mv ${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif.tar.gz /github/workspace/

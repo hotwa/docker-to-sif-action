@@ -15,7 +15,8 @@ fi
 
 # Build apptainer image from kaczmarj/apptainer-in-docker Dockerfile
 git clone https://github.com/kaczmarj/apptainer-in-docker
-docker build -t hotwa/input:apptainer -f Dockerfile apptainer-in-docker/
+cd apptainer-in-docker
+docker build -t hotwa/input:apptainer -f Dockerfile .
 
 # Convert Docker image
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/work hotwa/input:apptainer build ${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif docker-daemon://hotwa/input:latest

@@ -18,15 +18,18 @@ git clone https://github.com/kaczmarj/apptainer-in-docker
 cd apptainer-in-docker
 docker build -t hotwa/input:apptainer -f Dockerfile .
 cd ..
+
 # Convert Docker image
-docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /github/workspace:/work hotwa/input:apptainer build /work/${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif docker-daemon://hotwa/input:latest
+docker run --user root --rm -v /var/run/docker.sock:/var/run/docker.sock -v /github/workspace:/work hotwa/input:apptainer build /work/${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif docker-daemon://hotwa/input:latest
+
 # Sign Docker image if Apptainer key is set
 if [ -n "$APPTAINER_KEY" ]; then
-    docker run --rm -v ~/.apptainer:/root/.apptainer -v /github/workspace:/work hotwa/input:apptainer sign /work/${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif
+    docker run --user root --rm -v ~/.apptainer:/root/.apptainer -v /github/workspace:/work hotwa/input:apptainer sign /work/${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif
 fi
 
 # Package SIF file
 echo "current dir:"
+pwd
 tree
 tar czvf ${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif.tar.gz ${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif
 

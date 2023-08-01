@@ -45,8 +45,8 @@ else
 fi
 
 # Package SIF file
-tar czvf ${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif.tar.gz ${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif
+tar czvf apptainer.sif.tar.gz ${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif
 
-echo "current:"
+echo "current dir file:"
 ls
 

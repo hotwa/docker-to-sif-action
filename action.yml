@@ -8,8 +8,7 @@ inputs:
     description: 'Apptainer key for signing'
     required: true
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'composite'
   args:
     - ${{ inputs.dockerfile_path }}
     - ${{ inputs.apptainer_key }}

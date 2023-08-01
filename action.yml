@@ -1,0 +1,15 @@
+name: 'Dockerfile to SIF'
+description: 'Builds a SIF file from a Dockerfile and signs it'
+inputs:
+  dockerfile_path:
+    description: 'Path to the Dockerfile'
+    required: true
+  apptainer_key:
+    description: 'Apptainer key for signing'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.dockerfile_path }}
+    - ${{ inputs.apptainer_key }}

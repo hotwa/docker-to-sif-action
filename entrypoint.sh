@@ -47,3 +47,6 @@ fi
 # Package SIF file
 tar czvf ${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif.tar.gz ${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif
 
+echo "current:"
+ls
+

@@ -28,14 +28,6 @@ if [ -n "$APPTAINER_KEY" ]; then
 fi
 
 # Package SIF file
-echo "current dir:"
-cd /github/workspace
-pwd
-tree
-echo "root: /github"
-tree /github
-echo "root: /"
-tree /
 tar czvf ${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif.tar.gz ${INPUT_DOCKERFILE_PATH}-${TIMESTAMP}.sif
 
 # Move the tar.gz file to the workspace directory

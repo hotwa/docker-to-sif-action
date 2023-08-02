@@ -37,14 +37,13 @@ git clone https://github.com/kaczmarj/apptainer-in-docker
 cd apptainer-in-docker
 docker build -t hotwa/input:apptainer -f Dockerfile .
 cd ..
-rm -rf apptainer-in-docker  # Remove the cloned repository
 
 # Convert Docker image
 docker run --name sifbuild -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/work hotwa/input:apptainer build /work/${SIF_FILE_NAME}.sif docker-daemon://${IMAGE_NAME}
 
 # Clean up Docker images to free up space
-docker rmi $(docker images -q -f "dangling=true")  # Remove all dangling images
-docker system prune -a -f  # Remove all unused Docker objects
+# docker rmi $(docker images -q -f "dangling=true")  # Remove all dangling images
+# docker system prune -a -f  # Remove all unused Docker objects
 
 # Sign Docker image if Apptainer key is set
 if [ -n "$APPTAINER_KEY" ]; then
@@ -64,7 +63,6 @@ fi
 
 # Package SIF file
 tar czvf apptainer.sif.tar.gz ${SIF_FILE_NAME}.sif
-rm ${SIF_FILE_NAME}.sif  # Remove the original SIF file
 
 echo "current dir file:"
 ls

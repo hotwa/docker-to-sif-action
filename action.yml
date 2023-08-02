@@ -19,9 +19,9 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.dockerfile_path }}
-    - ${{ inputs.aliyun_image }}
-    - ${{ inputs.aliyun_username }}
-    - ${{ inputs.aliyun_password }}
-    - ${{ inputs.apptainer_key }}
+  env:
+    DOCKERFILE_PATH: ${{ inputs.dockerfile_path }}
+    ALIYUN_IMAGE: ${{ inputs.aliyun_image }}
+    ALIYUN_USERNAME: ${{ inputs.aliyun_username }}
+    ALIYUN_PASSWORD: ${{ inputs.aliyun_password }}
+    APPTAINER_KEY: ${{ inputs.apptainer_key }}

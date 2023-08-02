@@ -1,15 +1,27 @@
 name: 'Dockerfile to SIF'
-description: 'Builds a SIF file from a Dockerfile and signs it'
+description: 'Builds a SIF file from a Dockerfile or an Aliyun image, and signs it'
 inputs:
   dockerfile_path:
     description: 'Path to the Dockerfile'
-    required: true
+    required: false
+  aliyun_image:
+    description: 'Aliyun image to build the SIF from'
+    required: false
+  aliyun_username:
+    description: 'Username to login to Aliyun'
+    required: false
+  aliyun_password:
+    description: 'Password to login to Aliyun'
+    required: false
   apptainer_key:
     description: 'Apptainer key for signing'
-    required: true
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.dockerfile_path }}
+    - ${{ inputs.aliyun_image }}
+    - ${{ inputs.aliyun_username }}
+    - ${{ inputs.aliyun_password }}
     - ${{ inputs.apptainer_key }}
